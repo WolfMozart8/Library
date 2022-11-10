@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@400;700&family=Rubik+Bubbles&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
     <title>Library</title>
 </head>
@@ -14,22 +17,30 @@
         <div class="library-info">
             <p>Totals books: 0</p>
             <p>Read books: 0</p>
-        </div>
+        </div>  <!--.library-info-->
         <div class="newBook">
-            <input type="text" name="name" id="name">
-            <button class="button">Add book</button>
-        </div>
-        <div class="myBooks">
-                <!-- <div class="book">
-                    <div class="book-name">
-                        <p>Hola books</p>
-                    </div>
+            <h2>Add a new Book</h2>
+            <div class="form">
+                <div class="div-title">
+                    <label for="title">Title</label>
+                <input type="text" name="title" id="title">
                 </div>
-                <div class="book-info">
-                    <p>name: kjhasdkjhasjkdhask</p>
-                    <p>author: asdas</p>
-                    <p>pages: 1123</p>
-                </div> -->
+                <div class="div-author">
+                    <label for="author">Author</label>
+            <input type="text" name="author" id="author">
+                </div>
+                <div class="div-pages">
+                    <label for="pages">Pages</label>
+            <input type="number" name="pages" id="pages" min="0">
+                </div>
+
+                <input type="checkbox" id="check" name="check" ><label for="check">Is Read?</label>
+                <input type="checkbox" name="legendary" id="legendary"><label for="legendary">Is Legendary?</label>
+            <button class="button">Add book</button>                
+            </div>
+
+        </div> <!--newBook-->
+        <div class="myBooks">
         </div>  <!--.MyBooks-->
     </main>
 <script src="./script.js"></script>

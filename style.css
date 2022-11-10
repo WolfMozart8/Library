@@ -1,4 +1,17 @@
-    /* Box Sizing and 1px/1rem "Hacks" */
+ :root {
+    --color5: #323330;
+    --color4: #45462a;
+    --color3: #7e5920;
+    --color2: #dc851f;
+    --color1: #ffa737;
+    --white: #fff;
+    --black: #010101;
+
+    --main-font: 'Roboto', sans-serif;
+    --legendary: 'Great Vibes', cursive;
+    --myTitle: 'Rubik Bubbles', cursive;
+ }
+ /* Box Sizing and 1px/1rem "Hacks" */
 html {
     box-sizing: border-box;
     font-size: 62.5%;
@@ -8,9 +21,11 @@ html {
   }
 body {
     font-size: 1.6rem;
+    font-family: var(--main-font);
 }
-h1 {
+h1, h2 {
     text-align: center;
+    font-family: var(--myTitle);
 }
     /* Main Section */
 .main {
@@ -28,6 +43,7 @@ h1 {
     /* Book */
 .myBooks {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     height: 100%;
@@ -47,4 +63,16 @@ h1 {
 .book-name {
     background-color: #fff;
 
+}
+    /* Add book Section */
+.form {
+    font-size: 2rem;
+}
+#pages {
+    width: 60px;
+}
+.button {
+    padding: 20px;
+    border: none;
+    background-color: dodgerblue;
 }
