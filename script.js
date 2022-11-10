@@ -4,14 +4,20 @@ const inputTitle = document.getElementById("title");
 const inputAuthor = document.getElementById("author");
 const inputPages = document.getElementById("pages");
 const readCheck = document.getElementById("check");
+const legendaryCheck = document.getElementById("legendary");
+const totalcount = document.querySelector(".total-books")
+const totalReadcount = document.querySelector(".total-readbooks")
+let deleteButton;
 
-function Book(title, autor, pages, isRead) {
+function Book(title, autor, pages, isRead, legendary) {
     this.title = title;
     this.author = autor;
     this.pages = pages;
     this.isRead = isRead;
+    this.legendary = legendary;
 }
 let booksTotal = 0;
+let readbooks = 0;
 
 
 let myLibrary = [];
@@ -19,32 +25,77 @@ let myLibrary = [];
 
 button.addEventListener("click", addBookToLibrary);
 
+
+
 function addBookToLibrary() {
+    // Set the inputs and initials values
 const inputTitleV = inputTitle.value;
 const inputAuthorV = inputAuthor.value;
 const inputPagesV = inputPages.value;
+let thisBookRead = false;
+let legend = false;
 
-    if (inputTitleV && inputAuthorV && inputPagesV) {
-        const newBook = new Book(inputTitleV,inputAuthorV, inputPagesV);
+
+    if (inputTitleV && inputAuthorV && inputPagesV) { // check if the inputs are not empty
+
+        let read = "";
+
+        if (readCheck.checked) { // check if isRead is true
+            readbooks++;
+            read = "This book is read";
+            thisBookRead = true;
+        }
+        else {
+            read = "Not read Yet";
+            thisBookRead = false;
+        }
+        
+        if (legendaryCheck.checked) { // check if legendary is true
+            legend = true;
+        }
+            // Create a new book
+        const newBook = new Book(inputTitleV,inputAuthorV, inputPagesV, thisBookRead, legend);
         myLibrary.push(newBook);
 
         const bookContainer = document.createElement("DIV");
         const book = document.createElement("DIV");
         const bookName = document.createElement("DIV");
         const bookNametxt = document.createElement("P");
-    
         const bookInfo = document.createElement("DIV");
-    
-        bookInfo.innerHTML = `
-        <p>Name: ${myLibrary[0].title}</p>
-        <p>Author: ${myLibrary[0].author}</p>
-        <p>Pages: ${myLibrary[0].pages}</p>
-        `;
-        bookNametxt.textContent = myLibrary[0].title;
+        const deleteBook = document.createElement("BUTTON");
+
+
+        booksTotal++;
+        totalcount.textContent = booksTotal;
+        totalReadcount.textContent = readbooks;
+        deleteBook.textContent = "X";
+
+                // For loop to iterate in the array
+    for (let i = 0; i < myLibrary.length; i++) {
+            bookInfo.innerHTML = ` 
+            <p>Title: ${myLibrary[i].title}</p>
+            <p>Author: ${myLibrary[i].author}</p>
+            <p>Pages: ${myLibrary[i].pages}</p>
+            <br>
+            <p>${read}</p>
+            `;
+            bookNametxt.textContent = myLibrary[i].title;
+
+            bookContainer.setAttribute("id", `book-${i}`)//set the same data-/id for both container
+            deleteBook.setAttribute("data-book", i);    //and "x" button, to identify when remove
+    }
+
+
         bookContainer.classList.add("book-container");
         book.classList.add("book");
         bookName.classList.add("book-name");
-        
+        deleteBook.classList.add("del");
+        bookInfo.classList.add("info");
+
+        if (legend) {   // add class legend when legend is cheked
+            book.classList.add("legend");
+        }
+        bookInfo.appendChild(deleteBook);
         bookName.appendChild(bookNametxt);
         book.appendChild(bookName);
         bookContainer.appendChild(book);
@@ -53,9 +104,44 @@ const inputPagesV = inputPages.value;
 
         clearInputs();
     }
+    RemoveItems()
 }
 function clearInputs () {
     inputTitle.value = "";
     inputAuthor.value = "";
     inputPages.value = "";
+}
+
+function legendary (legend) {
+    if (legendaryCheck.checked) { // check if legendary is true
+        legend = true;
+        return legend;
+    }
+    else {
+        legend = false;
+        return legend;
+    }
+}
+
+function libraryInfo () {
+    
+}
+function RemoveItems() {
+    deleteButton = document.querySelectorAll(".del");
+
+    deleteButton.forEach(e => {
+        e.addEventListener("click", removeBook)
+    })
+}
+function removeBook (){
+    const thisDataBook = this.getAttribute("data-book"); //gets the data-book number
+    const bookDiv = document.getElementById("book-" + thisDataBook) //concat for searching for id
+    bookDiv.remove();
+    if (booksTotal < 0) {
+        booksTotal = 0;
+    }
+    booksTotal--;
+    totalcount.textContent = booksTotal;
+
+    myLibrary.splice(thisDataBook, 1)
 }

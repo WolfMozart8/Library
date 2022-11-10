@@ -22,6 +22,7 @@ html {
 body {
     font-size: 1.6rem;
     font-family: var(--main-font);
+    background-color: var(--color5);
 }
 h1, h2 {
     text-align: center;
@@ -34,7 +35,7 @@ h1, h2 {
     grid-template-rows: 1fr 3fr;
     margin: 0 auto;
     height: 600px;
-    max-width: 800px;
+    max-width: 1000px;
     background-color: antiquewhite;
 }
 .myBooks {
@@ -62,17 +63,88 @@ h1, h2 {
 }
 .book-name {
     background-color: #fff;
-
 }
-    /* Add book Section */
+.book-name p {
+    text-align: start;
+    line-break: anywhere;
+}
+    /* library Count Section */
+.library-info {
+        background-color: var(--color2);
+    }
+.library-log {
+    text-align: center;
+    font-size: 26px;
+}
+.library-log span {
+    margin-top: 30px;
+    font-size: 34px;
+}
+    /* Form section */
+.newBook {
+    background-color: var(--color2);
+}
 .form {
-    font-size: 2rem;
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
 }
 #pages {
-    width: 60px;
+    width: 140px;
+    border-style: dashed;
+    background-color: transparent;
+    font-size: 5rem;
 }
 .button {
     padding: 20px;
     border: none;
+    border-radius: 5px;
     background-color: dodgerblue;
+    margin: 20px;
+}
+.readLegend {
+    background-color: blueviolet;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px;
+}
+.div-pages {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+.text {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 15px;
+    
+}
+.text input {
+    font-size: 24px;
+    height: 40px;
+}
+    /* Add book Section */
+
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--white);
+}
+.legend {
+    background-color: aqua;
+}
+.myBooks {
+    display: grid;
+    grid-template-columns: minmax(40%, 1fr) minmax(40%, 1fr);
+    justify-items: center;
+    background-color: var(--color4);
+    border: 30px solid var(--color3);
+    border-style: inset inset none;
 }
