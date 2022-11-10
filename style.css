@@ -1,0 +1,50 @@
+    /* Box Sizing and 1px/1rem "Hacks" */
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+body {
+    font-size: 1.6rem;
+}
+h1 {
+    text-align: center;
+}
+    /* Main Section */
+.main {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr 3fr;
+    margin: 0 auto;
+    height: 600px;
+    max-width: 800px;
+    background-color: antiquewhite;
+}
+.myBooks {
+    grid-column: 1 / 3;
+}
+    /* Book */
+.myBooks {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    background-color: cadetblue;
+    overflow: auto;
+}
+.book-container {
+    display: flex;
+}
+.book {
+    height: 240px;
+    width: 190px;
+    background-color: blue;
+    padding: 30px;
+    margin: 30px;
+}
+.book-name {
+    background-color: #fff;
+
+}
