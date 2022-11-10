@@ -16,6 +16,7 @@ function Book(title, autor, pages, isRead, legendary) {
     this.isRead = isRead;
     this.legendary = legendary;
 }
+
 let booksTotal = 0;
 let readbooks = 0;
 
@@ -63,6 +64,7 @@ let legend = false;
         const bookNametxt = document.createElement("P");
         const bookInfo = document.createElement("DIV");
         const deleteBook = document.createElement("BUTTON");
+        const buttonDiv = document.createElement("DIV");
 
 
         booksTotal++;
@@ -91,11 +93,15 @@ let legend = false;
         bookName.classList.add("book-name");
         deleteBook.classList.add("del");
         bookInfo.classList.add("info");
+        buttonDiv.classList.add("button-div");
+
+        deleteBook.setAttribute("title", "Remove book")
 
         if (legend) {   // add class legend when legend is cheked
             book.classList.add("legend");
         }
-        bookInfo.appendChild(deleteBook);
+        bookInfo.appendChild(buttonDiv);
+        buttonDiv.appendChild(deleteBook);
         bookName.appendChild(bookNametxt);
         book.appendChild(bookName);
         bookContainer.appendChild(book);
@@ -110,6 +116,8 @@ function clearInputs () {
     inputTitle.value = "";
     inputAuthor.value = "";
     inputPages.value = "";
+    readCheck.checked = false;
+    legendaryCheck.checked = false;
 }
 
 function legendary (legend) {
