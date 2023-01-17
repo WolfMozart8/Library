@@ -3,10 +3,14 @@ const button = document.querySelector(".button");
 const inputTitle = document.getElementById("title");
 const inputAuthor = document.getElementById("author");
 const inputPages = document.getElementById("pages");
+const error = document.querySelector("#pages + span.error");
 const readCheck = document.getElementById("check");
 const legendaryCheck = document.getElementById("legendary");
 const totalcount = document.querySelector(".total-books")
 const totalReadcount = document.querySelector(".total-readbooks")
+
+const form = document.querySelector("form");
+
 let deleteButton;
 
 function Book(title, autor, pages, isRead, legendary) {
@@ -22,6 +26,42 @@ let readbooks = 0;
 
 
 let myLibrary = [];
+
+inputPages.addEventListener("input", () => {
+    if (inputPages.validity.valid) {
+        error.textContent = "";
+        error.className = "error";
+    }else {
+        showError();
+    }
+})
+form.addEventListener("submit", (event) => {
+    // if the email field is valid, we let the form submit
+    if (!inputPages.validity.valid) {
+      // If it isn't, we display an appropriate error message
+    showError();
+      // Then we prevent the form from being sent by canceling the event
+    event.preventDefault();
+    }
+});
+function showError() {
+    if (inputPages.validity.valueMissing) {
+      // If the field is empty,
+      // display the following error message.
+    error.textContent = "You need to enter an email address.";
+    } else if (!inputPages.validity.valid) {
+      // If the field doesn't contain an email address,
+      // display the following error message.
+    error.textContent = "Entered value is not valid";
+    } else if (inputPages.validity.tooShort) {
+      // If the data is too short,
+      // display the following error message.
+    error.textContent = `Email should be at least ${inputPages.min} characters; you entered ${email.value}.`;
+    }
+
+    // Set the styling appropriately
+    error.className = "error active";
+}
 
 
 button.addEventListener("click", addBookToLibrary);
